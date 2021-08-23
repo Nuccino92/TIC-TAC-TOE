@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Outline&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(45deg, #5302a0, #860192, #029fd8);
+	background-size: 400% 400%;
+	animation: gradient 40s ease infinite;
+	height: 100vh;
+}
+
+/* @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+} */
+
+header {
+    font-family: 'Permanent Marker';
+    font-size: 90px;
+    text-align: center;
+    margin-top: 16px;
+    color: #f890e7;
+    text-shadow: 10px 5px 1px #0bd3d3;
+    animation: title 12s linear infinite;
+}
+
+/* @keyframes title {
+    100% {
+        text-shadow: 10px 5px 1px #0bd3d3;
+        color: #f890e7;
+    }
+    50% {
+        text-shadow: 10px 5px 1px #01b6b6;
+        color: #d81eb9;
+    }
+} */
+
+.outer-setup-container {
+    position: absolute;
+    padding: 7px 40px 40px 40px;
+    border: 1px solid black;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 600px;
+    width: 1000px;
+    align-content: center;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.setup-title {
+    font-family: 'Bungee Outline';
+    font-size: 60px;
+    font-weight: bolder;
+    padding-bottom: 40px;
+    position: relative;
+    color: #0bd3d3;
+    animation: peep 3s ease-in infinite;
+}
+
+@keyframes peep {
+
+	0% {
+        text-shadow: 1px 0px 6px #ffffff;
+	}
+    50% {
+        opacity: .5;
+        text-shadow: 1px 0px 6px #888888;
+    }
+    100% {
+        text-shadow: 1px 0px 6px #ffffff;
+	}
+} 
+
+.setup-container {
+    position: relative;
+    border: 1px solid black;
+    margin: 0 auto;
+    width: 99%;
+    height: 88%;
+    border-radius: 20px;
+    font-family: sans-serif;
+    margin-top: 14px;
+    background: rgb(90, 90, 90);
+}
