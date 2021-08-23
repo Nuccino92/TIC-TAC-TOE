@@ -10,11 +10,11 @@
 body {
     background: linear-gradient(45deg, #5302a0, #860192, #029fd8);
 	background-size: 400% 400%;
-	animation: gradient 40s ease infinite;
+	animation: gradient 15s ease infinite;
 	height: 100vh;
 }
 
-/* @keyframes gradient {
+@keyframes gradient {
 	0% {
 		background-position: 0% 50%;
 	}
@@ -24,7 +24,7 @@ body {
 	100% {
 		background-position: 0% 50%;
 	}
-} */
+}
 
 header {
     font-family: 'Permanent Marker';
@@ -33,24 +33,11 @@ header {
     margin-top: 16px;
     color: #f890e7;
     text-shadow: 10px 5px 1px #0bd3d3;
-    animation: title 12s linear infinite;
 }
-
-/* @keyframes title {
-    100% {
-        text-shadow: 10px 5px 1px #0bd3d3;
-        color: #f890e7;
-    }
-    50% {
-        text-shadow: 10px 5px 1px #01b6b6;
-        color: #d81eb9;
-    }
-} */
 
 .outer-setup-container {
     position: absolute;
     padding: 7px 40px 40px 40px;
-    border: 1px solid black;
     top: 58%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -59,6 +46,7 @@ header {
     align-content: center;
     border-radius: 20px;
     text-align: center;
+    background-image: url(/pictures/signup-background.png);
 }
 
 .setup-title {
@@ -77,16 +65,30 @@ header {
         text-shadow: 1px 0px 6px #ffffff;
 	}
     50% {
-        opacity: .5;
-        text-shadow: 1px 0px 6px #888888;
+        opacity: .53;
+        text-shadow: 1px 0px 6px #d81eb9;
     }
     100% {
         text-shadow: 1px 0px 6px #ffffff;
 	}
 } 
 
+.vs {
+    position: absolute;
+    z-index: 1;
+    margin: 0 auto;
+    top: 47%;
+    left: 47.6%;
+    font-size: 38px;
+    font-family: 'Permanent Marker';
+    color: white;
+    text-shadow: 1px 5px 10px black;
+}
+
 .setup-container {
     position: relative;
+    display: grid;
+    grid-template-columns: 50% 1fr;
     border: 1px solid black;
     margin: 0 auto;
     width: 99%;
@@ -94,5 +96,133 @@ header {
     border-radius: 20px;
     font-family: sans-serif;
     margin-top: 14px;
-    background: rgb(90, 90, 90);
+    background: linear-gradient(180deg, #5302a0, #860192, #029fd8);
+    opacity: .99;
+}
+
+.player-one {
+    border: 1px solid black;
+    font-size: 30px;
+    padding-top: 20px;
+    font-family: 'Bungee Outline';
+    color: white;
+    font-weight: bolder;
+}
+
+.player-two {
+    border: 1px solid black;
+    font-size: 30px;
+    padding-top: 20px;
+    font-family: 'Bungee Outline';
+    color: white;
+    font-weight: bolder;
+}
+
+.player-one-inner {
+    height: 55%;
+    width: 72%;
+    margin: 0 auto;
+    margin-top: 25px;
+    background: rgb(9, 9, 9);
+    border: 1px ridge white;
+    border-radius: 8px;
+}
+
+.player-two-inner {
+    height: 55%;
+    width: 72%;
+    margin: 0 auto;
+    margin-top: 25px; 
+    background: rgb(9, 9, 9); 
+    border: 1px ridge white;
+    border-radius: 8px;
+}
+
+.silhouette-one {
+    margin: 0 auto;
+    height: 100%;
+    width: 80%;
+    background: url(/pictures/player-sillhouete.png), no-repeat, rgb(9, 9, 9); 
+    background-size: contain;
+}
+
+.silhouette-two {
+    margin: 0 auto;
+    height: 100%;
+    width: 80%;
+    background: url(/pictures/player-sillhouete.png), no-repeat, rgb(9, 9, 9);
+    background-size: contain; 
+}
+
+.play-now {
+    position: absolute;
+    font-family: 'Bungee Outline';
+    font-size: 50px;
+    top: 82%;
+    left: 41.5%;
+    width: 170px;
+    box-shadow: 0px 8px 10px black;
+    background: rgb(3, 25, 47);
+    color: #f890e7;
+    border: 1px solid rgb(24, 149, 187);
+    text-shadow: 1px 0px 6px #ffffff;
+    cursor: pointer;
+}
+
+.play-now:hover {
+    color: gold;
+    border: 1px solid gold;
+    box-shadow: 1px 1px 10px white;
+}
+
+.play-now:active {
+    opacity: .93;
+    color: #f890e7;
+    box-shadow: 0px 4px 9px black;
+}
+
+.player-one-button-container {
+    position: absolute;
+    top: 77%;
+    left: 11%;
+    cursor: default;
+}
+
+.x-button-one {
+    margin: 5px;
+    padding: 0px 12px;
+    border: 2px solid gold;
+    font-size: 36px;
+    background: black;
+    color: red;
+    cursor: pointer;
+    border-radius: 7px;
+    opacity: .7;
+}
+
+.o-button-one {
+    margin: 5px;
+    margin: 5px;
+    padding: 0px 12px;
+    border: 2px solid gold;
+    font-size: 36px;
+    background: black;
+    color: red;
+    cursor: pointer;
+    border-radius: 7px;
+    opacity: .7;
+}
+
+.x-button-one:focus {
+    opacity: 1;
+    box-shadow: 0px 0px 1px 1px gold;
+}
+
+.o-button-one:focus {
+    opacity: 1;
+    box-shadow: 0px 0px 1px 1px gold;
+}
+
+.computer-button {
+    
 }
