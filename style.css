@@ -101,7 +101,7 @@ header {
 }
 
 .player-one {
-    border: 1px solid black;
+    border-right: 2px solid black;
     font-size: 30px;
     padding-top: 20px;
     font-family: 'Bungee Outline';
@@ -110,12 +110,15 @@ header {
 }
 
 .player-two {
-    border: 1px solid black;
     font-size: 30px;
     padding-top: 20px;
     font-family: 'Bungee Outline';
     color: white;
     font-weight: bolder;
+}
+
+#playerUi.active {
+    transform: scale(0);
 }
 
 .player-one-inner {
@@ -167,6 +170,7 @@ header {
     border: 1px solid rgb(24, 149, 187);
     text-shadow: 1px 0px 6px #ffffff;
     cursor: pointer;
+    z-index: 2;
 }
 
 .play-now:hover {
@@ -183,46 +187,189 @@ header {
 
 .player-one-button-container {
     position: absolute;
-    top: 77%;
-    left: 11%;
+    top: 76%;
+    left: 17.5%;
     cursor: default;
 }
 
 .x-button-one {
     margin: 5px;
     padding: 0px 12px;
-    border: 2px solid gold;
+    border: 3px solid rgb(0, 81, 187);
     font-size: 36px;
     background: black;
     color: red;
     cursor: pointer;
     border-radius: 7px;
-    opacity: .7;
+    opacity: .84;
 }
 
 .o-button-one {
     margin: 5px;
     margin: 5px;
     padding: 0px 12px;
-    border: 2px solid gold;
+    border: 3px solid rgb(0, 81, 187);
     font-size: 36px;
     background: black;
     color: red;
     cursor: pointer;
     border-radius: 7px;
-    opacity: .7;
+    opacity: .84;
 }
 
 .x-button-one:focus {
     opacity: 1;
-    box-shadow: 0px 0px 1px 1px gold;
+    border: 3px solid rgb(0, 81, 187);
+    box-shadow: 0px 0px 3px 2px rgb(0, 81, 187);
 }
 
 .o-button-one:focus {
     opacity: 1;
-    box-shadow: 0px 0px 1px 1px gold;
+    border: 3px solid rgb(0, 81, 187);
+    box-shadow: 0px 0px 3px 2px rgb(0, 81, 187);
+}
+
+.player-two-button-container {
+    position: absolute;
+    left: 78%;
+    top: 85%;
 }
 
 .computer-button {
-    
+    font-family: monospace;
+    font-size: 30px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background: black;
+    border: 3px solid rgb(0, 81, 187);
+    opacity: .92;
+    color: red;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.computer-button:active {
+    opacity: 1;
+    border: 3px solid rgb(0, 81, 187);
+    box-shadow: 0px 0px 3px 2px rgb(0, 81, 187);
+}
+
+.computer-selection {
+    position: absolute;
+    top: 15.5%;
+    width: 45.6%;
+    height: 81.2%;
+    font-size: 30px;
+    padding-top: 20px;
+    font-family: 'Bungee Outline';
+    color: white;
+    font-weight: bolder;
+    transform: scale(0);
+}
+
+#computerUi.active {
+    transform: scale(1);
+}
+
+.computer-selection-inner {
+    height: 54.6%;
+    width: 71.9%;
+    margin: 0 auto;
+    margin-top: 26px;
+    margin-left: 63px;
+    background: rgb(9, 9, 9);
+    border: 1px ridge white;
+    border-radius: 8px;
+}
+
+.silhouette-computer {
+    margin: 0 auto;
+    height: 100%;
+    width: 75%;
+    background: url(/pictures/computer.png), no-repeat, rgb(9, 9, 9); 
+    background-size: contain;
+}
+
+.computer-button-container {
+    position: absolute;
+    left: 49%;
+    top: 85%;
+}
+
+.player-button {
+    font-family: monospace;
+    font-size: 30px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background: black;
+    border: 3px solid rgb(0, 81, 187);
+    opacity: .92;
+    color: red;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.player-button:active {
+    opacity: 1;
+    border: 3px solid rgb(0, 81, 187);
+    box-shadow: 0px 0px 3px 2px rgb(0, 81, 187);
+}
+
+.computer-difficulty-container {
+    position: absolute;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: auto;
+    width: 20px;
+    left: 25%;
+    top: 75%;
+    font-family: monospace;
+}
+
+.easy-button {
+    margin: 4px;
+    color: white;
+    background: black;
+    font-size: 16px;
+    padding: 2px 6px;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+}
+
+.easy-button:hover {
+    color: rgb(153, 255, 0);
+    box-shadow: 0px 0px 3px 2px rgb(153, 255, 0);
+}
+
+.medium-button {
+    margin: 4px;
+    color: white;
+    background: black;
+    font-size: 16px;
+    padding: 2px 6px;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+}
+
+.medium-button:hover {
+    color: rgb(236, 236, 2);
+    box-shadow: 0px 0px 3px 2px rgb(236, 236, 2);
+}
+
+.hard-button {
+    margin: 4px;
+    color: white;
+    background: black;
+    font-size: 16px;
+    padding: 2px 6px;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+}
+
+.hard-button:hover {
+    color: rgb(255, 27, 27);
+    box-shadow: 0px 0px 3px 2px rgb(255, 27, 27);
 }
