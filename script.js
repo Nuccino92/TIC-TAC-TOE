@@ -28,6 +28,31 @@ function openPlayer(playerUi) {
 // All code above selects the computer/player two UI
 // ---------------------------------------------------------------------
 
+const playButton = document.getElementById('play-button');
+const returnButton = document.getElementById('return');
+const setupUi = document.getElementById('setup-ui');
+const gameUi = document.getElementById('game-ui');
+
+playButton.addEventListener('click', () => {
+    openGame()
+});
+
+returnButton.addEventListener('click', () => {
+    setupReturn()
+})
+
+function openGame() {
+    setupUi.classList.add('active');
+    gameUi.classList.add('active');
+};
+
+function setupReturn() {
+    setupUi.classList.remove('active');
+    gameUi.classList.remove('active');
+}
+
+
+
 const Gameboard = (function() {
     let board = [];
 
