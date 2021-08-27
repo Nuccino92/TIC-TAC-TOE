@@ -427,8 +427,14 @@ header {
     font-size: 50px;
 }
 
-.cell:hover {
-    background: rgba(255, 255, 255, 0.096);
+.cell {
+    font-size: 77px;
+    font-family: 'Permanent Marker';
+    text-align: center;
+    background: linear-gradient(to right, #01c0c0 0%, #f673e0 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    text-shadow: 4px 4px 4px 4px black;
     cursor: pointer;
 }
 
