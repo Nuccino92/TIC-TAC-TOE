@@ -58,7 +58,7 @@
         <div class="player-one-game"> Player One
             <div class="player-one-game-silhouette"></div>
             <div class="player-one-score">Score
-                <div class="player-one-score-number">0</div>
+                <div class="player-one-score-number" id="player-one-score-total">0</div>
             </div>
         </div>
         
@@ -73,8 +73,22 @@
             <div class="cell" id="7" style="border-right: 10px double #0bd3d3;"></div>
             <div class="cell" id="8"></div>
         </div>
-    </div>
         
+        <div class="player-two-game"> Player Two
+            <div class="player-two-game-silhouette"></div>
+            <div class="player-two-score">Score
+                <div class="player-two-score-number" id="player-two-score-total">0</div>
+            </div>
+        </div>
+     
+        <div class="new-game-reset-button-container">
+            <button class="new-game-button" id="new-game-btn">New Game</button>
+        </div>
+            <button class="reset-button" id="reset-btn">Reset Score</button>
+    </div>
+
+    <div class="winner-overlay" id="win-overlay"></div>
+
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

@@ -471,3 +471,117 @@ header {
 .player-one-score-number {
     font-size: 50px;
 }
+
+@keyframes scoreanimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(2, 2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.player-two-game {
+    position: absolute;
+    height: 500px;
+    width: 300px;
+    right: 10%;
+    top: 20%;
+    font-family: 'Bungee Outline';
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 10px;
+    font-weight: bolder;
+}
+
+.player-two-game-silhouette {
+    margin: 0 auto;
+    height: 50%;
+    width: 90%;
+    margin-top: 10px;
+    background: url(/pictures/player-sillhouete.png), no-repeat, rgb(9, 9, 9); 
+    background-size: contain;
+    border: 4px solid white;
+}
+
+.player-two-score {
+    font-family: 'Permanent Marker';
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.player-two-score-number {
+    font-size: 50px;
+}
+
+.new-game-reset-button-container {
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%);
+    margin-top: 30px;
+}
+
+.new-game-button {
+    padding: 0px 20px;
+    font-size: 35px;
+    border-radius: 2px;
+    font-family: 'Permanent Marker';
+    color: white;
+    background: #f673e0;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    border: 2px solid #01c0c0;
+    box-shadow: 0px 0px 2px 2px #01c0c0;
+    cursor: pointer;
+}
+
+.new-game-button:hover {
+    color: rgb(7, 212, 0);
+    transform: scale(1.04, 1.09);
+}
+
+.new-game-button:active {
+    color: rgb(6, 175, 0);
+    transform: scale(1, 1);
+}
+
+.reset-button {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    padding: 0px 20px;
+    font-size: 35px;
+    border-radius: 2px;
+    font-family: 'Permanent Marker';
+    border: 2px solid #f673e0;
+    background: #01c0c0;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    box-shadow: 0px 0px 2px 2px #f673e0;
+    color: white;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    box-shadow: 0px 0px 2px 2px #f673e0;
+    border: 2px solid #f673e0;
+    color: rgb(255, 50, 50);
+    transform: scale(1.04, 1.09);
+}
+
+.reset-button:active {
+    transform: scale(1, 1);
+    color: rgb(226, 44, 44);
+}
+
+.winner-overlay.active {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+}
