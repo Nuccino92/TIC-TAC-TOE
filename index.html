@@ -59,6 +59,7 @@
             <div class="player-one-game-silhouette"></div>
             <div class="player-one-score">Score
                 <div class="player-one-score-number" id="player-one-score-total">0</div>
+                <div class="player-one-turn" id="player-one-mark"></div>
             </div>
         </div>
         
@@ -78,16 +79,23 @@
             <div class="player-two-game-silhouette"></div>
             <div class="player-two-score">Score
                 <div class="player-two-score-number" id="player-two-score-total">0</div>
+                <div class="player-two-turn" id="player-two-mark"></div>
             </div>
         </div>
-     
-        <div class="new-game-reset-button-container">
-            <button class="new-game-button" id="new-game-btn">New Game</button>
+        <div class="computer-game"> Computer
+            <div class="computer-game-silhouette"></div>
+            <div class="computer-score">Score
+                <div class="computer-score-number" id="computer-score-total">0</div>
+                <div class="computer-turn" id="computer-mark"></div>
+            </div>
         </div>
             <button class="reset-button" id="reset-btn">Reset Score</button>
+            <button class="new-game-button" id="new-game-btn">New Game</button>
     </div>
 
-    <div class="winner-overlay" id="win-overlay"></div>
+    <div class="winner-overlay" id="win-overlay">
+        
+    </div>
 
     <script type="text/javascript" src="script.js"></script>
 </body>

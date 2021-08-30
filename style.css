@@ -450,6 +450,7 @@ header {
     font-size: 30px;
     padding-top: 10px;
     font-weight: bolder;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .player-one-game-silhouette {
@@ -472,20 +473,22 @@ header {
     font-size: 50px;
 }
 
-@keyframes scoreanimation {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(2, 2);
-    }
-    100% {
-        transform: scale(1);
-    }
+.player-one-turn {
+    width: 50%;
+    margin: auto;
+    padding-right: 10px;
+    height: 120px;
+    width: 120px;
+    font-family: 'Permanent Marker';
+    color: #0bd3d3;
+    text-shadow: 8px 3px 1px #f890e7;
+    font-size: 80px;
+    text-align: center;
 }
 
 .player-two-game {
     position: absolute;
+    display: initial;
     height: 500px;
     width: 300px;
     right: 10%;
@@ -496,12 +499,17 @@ header {
     font-size: 30px;
     padding-top: 10px;
     font-weight: bolder;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.player-two-game.active {
+    display: none;
 }
 
 .player-two-game-silhouette {
     margin: 0 auto;
     height: 50%;
-    width: 90%;
+    width: 80%;
     margin-top: 10px;
     background: url(/pictures/player-sillhouete.png), no-repeat, rgb(9, 9, 9); 
     background-size: contain;
@@ -518,35 +526,69 @@ header {
     font-size: 50px;
 }
 
-.new-game-reset-button-container {
-    position: absolute;
-    left: 50%;
-    top: 80%;
-    transform: translate(-50%);
-    margin-top: 30px;
-}
-
-.new-game-button {
-    padding: 0px 20px;
-    font-size: 35px;
-    border-radius: 2px;
+.player-two-turn {
+    width: 50%;
+    margin: auto;
+    height: 120px;
+    width: 120px;
     font-family: 'Permanent Marker';
+    color: #f890e7;
+    text-shadow: 8px 3px 1px #0bd3d3;
+    font-size: 80px;
+    text-align: center;
+    
+}
+
+.computer-game {
+    position: absolute;
+    display: none;
+    height: 500px;
+    width: 300px;
+    right: 10%;
+    top: 20%;
+    font-family: 'Bungee Outline';
     color: white;
-    background: #f673e0;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 10px;
+    font-weight: bolder;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    border: 2px solid #01c0c0;
-    box-shadow: 0px 0px 2px 2px #01c0c0;
-    cursor: pointer;
 }
 
-.new-game-button:hover {
-    color: rgb(7, 212, 0);
-    transform: scale(1.04, 1.09);
+.computer-game.active {
+    display: initial;
 }
 
-.new-game-button:active {
-    color: rgb(6, 175, 0);
-    transform: scale(1, 1);
+.computer-game-silhouette {
+    margin: 0 auto;
+    height: 50%;
+    width: 87%;
+    margin-top: 10px;
+    background: url(/pictures/computer.png), no-repeat, rgb(9, 9, 9); 
+    background-size: contain;
+    border: 4px solid white;
+}
+
+.computer-score {
+    font-family: 'Permanent Marker';
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.computer-score-number {
+    font-size: 50px;
+}
+
+.computer-turn {
+    width: 50%;
+    margin: auto;
+    height: 120px;
+    width: 120px;
+    font-family: 'Permanent Marker';
+    color: #f890e7;
+    text-shadow: 8px 3px 1px #0bd3d3;
+    font-size: 80px;
+    text-align: center;  
 }
 
 .reset-button {
@@ -577,11 +619,48 @@ header {
     color: rgb(226, 44, 44);
 }
 
+.winner-overlay {
+    transform: scale(0);
+}
+
 .winner-overlay.active {
     position: absolute;
+    transform: scale(1);
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
     height: 400px;
+}
+
+.new-game-button {
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%);
+    margin-top: 40px;
+    padding: 0px 20px;
+    width: 230px;
+    height: 60px;
+    font-size: 35px;
+    border-radius: 2px;
+    font-family: 'Permanent Marker';
+    color: white;
+    background: #f673e0;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    border: 2px solid #01c0c0;
+    box-shadow: 0px 0px 2px 2px #01c0c0;
+    cursor: pointer;
+}
+
+.new-game-button:hover {
+    color: rgb(7, 212, 0);
+    transform: scale(1.04, 1.09);
+    transform: translate(-50%);
+}
+
+.new-game-button:active {
+    color: rgb(6, 175, 0);
+    transform: scale(1, 1);
+    transform: translate(-50%);
 }

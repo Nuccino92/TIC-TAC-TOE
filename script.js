@@ -3,11 +3,15 @@ const DisplayChange = (() => {
     
     const openComputerButton = document.querySelectorAll('[data-open-computer]');
     const openPlayerButton =  document.querySelectorAll('[data-open-player]');
+    const setPlayerOpponent = document.querySelector('.player-two-game');
+    const setComputerOpponent = document.querySelector('.computer-game');
 
     openComputerButton.forEach(button => {
         button.addEventListener('click', () => {
             const computerUi = document.getElementById('computerUi');
             openComputer(computerUi);
+            setPlayerOpponent.classList.add('active');
+            setComputerOpponent.classList.add('active');
         })
     });
 
@@ -15,6 +19,8 @@ const DisplayChange = (() => {
         button.addEventListener('click', () => {
             const playerUi = document.getElementById('playerUi');
             openPlayer(playerUi);
+            setPlayerOpponent.classList.remove('active');
+            setComputerOpponent.classList.remove('active');
         })
     });
 
@@ -32,7 +38,6 @@ const DisplayChange = (() => {
     const returnButton = document.getElementById('return');
     const setupUi = document.getElementById('setup-ui');
     const gameUi = document.getElementById('game-ui');
-    const newGameBtn = document.getElementById('new-game-btn');
     const resetBtn = document.getElementById('reset-btn');
     const winOverlay = document.getElementById('win-overlay');
 
@@ -56,12 +61,6 @@ const DisplayChange = (() => {
         gameUi.classList.remove('active');
     }
     
-    newGameBtn.addEventListener('click', () => {
-        Gameboard.resetBoard();
-        Players.startRound();
-        removeBlockBoard();
-        // Players.rotateTurnDraw();
-    })
 
     resetBtn.addEventListener('click', () => {
         Gameboard.resetBoard();
@@ -69,6 +68,8 @@ const DisplayChange = (() => {
         removeBlockBoard();
         Players.roundCounterReset();
         Players.scoreReset();
+        roundCounter = 2;
+        Players.playerMarkDisplay(roundCounter)
     })
 
     function blockBoard() {
@@ -99,8 +100,8 @@ const Gameboard = (() => {
 
     function resetBoard() {
         for(i = 0; i < board.length; i++) {
-            Gameboard.board[i] = '';
-            Gameboard.cells[i].textContent = ''; 
+            board[i] = '';
+            cells[i].textContent = ''; 
         }
         Players.startRound();   
     }  
@@ -122,26 +123,26 @@ const Gameboard = (() => {
 
             if (board[a] && (board[a] === board[b] && board[a] === board[c])) {
                 if(board[a] == 'x') {
-                    Players.xWin();
+                    return Players.xWin();
                 }
                 if(board[a] == 'o') {
-                    Players.oWin();
+                    return Players.oWin();
                 }
             }
         }
         return null;
     }
 
+    
     return {board, cells, renderCells, changeBoard, resetBoard, checkWin};
     
 })();
 
 const Players = (() => {
-    
-    let roundCounter = 2; // i used this variable to toggle rounds. /even numbers for player 1. odd numbers for player2 or computer.
+    let roundCounter = 2; // i use this variable to control the rounds. If roundCounter is even p1 is x, if odd p1 is o
     const xMark = 'x';
     const oMark = 'o';
-    let oTurn; //i used this variable to switch what appears when clicked between 'x' or 'o'.
+    let oTurn;   //i use this variable to switch between string 'x' or 'o'.
     let scoreOne = 0;
     let scoreTwo = 0;
     startRound();
@@ -149,33 +150,21 @@ const Players = (() => {
     const xButton = document.querySelector('.x-button-one');
     const oButton = document.querySelector('.o-button-one');
 
-    xButton.addEventListener('click', setTurnX);
-        
-    oButton.addEventListener('click', setTurnO);
-
-    function setTurnX() {
-        return roundCounter = 2;
-    }
-
-    function setTurnO() {
-        return roundCounter = 1;
-    }
 
     function startRound() {
+        playerMarkDisplay(roundCounter);
         oTurn = false;
-        
         Gameboard.cells.forEach(cell  => {
             cell.removeEventListener('click', cellClicked);
-            cell.addEventListener('click', cellClicked, {once: true});      
+            cell.addEventListener('click', cellClicked, {once: true}); 
         }) 
     }    
         
     function cellClicked() { 
         let cell = this.id; //gets the exact cell you click
         let currentMark = oTurn ? oMark : xMark; // gets an 'x' or 'o' string
-
         placeSelection(cell, currentMark);
-        switchTurn();
+        switchMark();
         Gameboard.checkWin();
     }
 
@@ -184,18 +173,8 @@ const Players = (() => {
         Gameboard.renderCells();
     }
    
-    function switchTurn() {
+    function switchMark() {  //switch the strings
         (oTurn = !oTurn);  
-    }
-
-    function xWin() {
-        DisplayChange.blockBoard();
-        rotateTurn();
-    }
-
-    function oWin() {
-        DisplayChange.blockBoard();
-        rotateTurn();
     }
 
     function playerOneScore() {
@@ -208,19 +187,43 @@ const Players = (() => {
         document.getElementById('player-two-score-total').textContent = scoreTwo;
     }
 
-    function rotateTurn() {  
+    const xWin = () => {   // xwin on an "even round" p1++,  xwin on an "odd round" p2/cpu++
         if(roundCounter % 2 === 0) { 
-            playerOneScore(); return roundCounter++
+            playerOneScore(); DisplayChange.blockBoard(); return 
         }
         if(Math.abs(roundCounter % 2) == 1) {         //if the difference between roundCounter % 2 == 1 the number will be odd
-            playerTwoScore(); return roundCounter++
+            playerTwoScore(); DisplayChange.blockBoard(); return 
         }
     }
 
-    function rotateTurnDraw() {
-        return roundCounter++; //new function if the board is full and you press the new game button, rotates the turn without giving points
+    const oWin = () => {   //o win on "even round" p2/cpu++,  owin on an "odd round" p1++   // this covers all scenarios and rotates rounds correctly
+        if(roundCounter % 2 === 0) { 
+            playerTwoScore(); DisplayChange.blockBoard(); return 
+        }
+        if(Math.abs(roundCounter % 2) == 1) {         
+            playerOneScore(); DisplayChange.blockBoard(); return 
+        }
     }
 
+    xButton.addEventListener('click', setTurnX);
+        
+    oButton.addEventListener('click', setTurnO);
+
+    function setTurnX() {
+        roundCounter = 2; playerMarkDisplay(roundCounter);
+        return;   
+    }
+
+    function setTurnO() {
+        roundCounter = 1; playerMarkDisplay(roundCounter);
+        return;
+    }
+
+    function drawRotateTurn() {
+        roundCounter++
+        DisplayChange.blockBoard();
+    }
+   
     function roundCounterReset() {
         roundCounter = 2;
     }
@@ -232,10 +235,37 @@ const Players = (() => {
         document.getElementById('player-two-score-total').textContent = scoreTwo;
     }
 
-    return {oTurn, startRound, xWin, oWin, scoreReset, rotateTurn, roundCounterReset, rotateTurnDraw};
+    function playerMarkDisplay(roundCounter) {  // shows what turn the players are on
+        if(roundCounter % 2 === 0) { 
+            document.getElementById('player-one-mark').textContent = 'x';
+            document.getElementById('player-two-mark').textContent = 'o';
+        }
+        if(Math.abs(roundCounter % 2) == 1) {         
+            document.getElementById('player-two-mark').textContent = 'x';
+            document.getElementById('player-one-mark').textContent = 'o';
+        }
+    }
+
+    const newGameBtn = document.getElementById('new-game-btn');
+    
+    newGameBtn.addEventListener('click', () => {
+        roundCounter++
+        Gameboard.resetBoard();
+        Players.startRound();
+        DisplayChange.removeBlockBoard(); 
+    })
+
+    return {oTurn, startRound, xWin, oWin, scoreReset, roundCounterReset, drawRotateTurn, playerMarkDisplay, roundCounter};
 
 })();
 
-
+    // function easyAi() {
+    //     for(let i = o; i < 9; i++) {
+    //         if(Gameboard.board[i] === '') {
+    //             return {i}
+    //         }
+    //     }
+    //     return null
+    // }
 
 
